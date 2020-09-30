@@ -32,7 +32,7 @@ class VariableGroup extends IPSModule {
 		$this->EnableAction("Status");
 		
 		// Timer
-		$this->RegisterTimer("RefreshInformation", 0 , 'DEVSWITCHER_RefreshInformation($_IPS[\'TARGET\']);');
+		$this->RegisterTimer("RefreshInformation", 0 , 'VARGROUP_RefreshInformation($_IPS[\'TARGET\']);');
     }
 
 	public function Destroy() {
@@ -132,7 +132,7 @@ class VariableGroup extends IPSModule {
 					);
 		
 		// Add the buttons for the test center
-		$form['actions'][] = Array(	"type" => "Button", "label" => "Refresh", "onClick" => 'DEVSWITCHER_RefreshInformation($id);');
+		$form['actions'][] = Array(	"type" => "Button", "label" => "Refresh", "onClick" => 'VARGROUP_RefreshInformation($id);');
 
 		// Return the completed form
 		return json_encode($form);
