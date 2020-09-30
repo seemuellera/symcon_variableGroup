@@ -220,7 +220,7 @@ class VariableGroup extends IPSModule {
 					
 		$html .= "</tbody></table>";
 		
-		SetValue($this->GetIDForIdent("ResultText", $html));
+		SetValue($this->GetIDForIdent("ResultText"), $html);
 	}
 	
 	protected function CheckAnd() {
