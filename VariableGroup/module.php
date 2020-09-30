@@ -282,6 +282,10 @@ class VariableGroup extends IPSModule {
 		
 			case "Status":
 				SetValue($this->GetIDForIdent($Ident), $Value);
+				if ($Value) {
+					
+					$this->RefreshInformation();
+				}
 				break;
 			default:
 				throw new Exception("Invalid Ident");
