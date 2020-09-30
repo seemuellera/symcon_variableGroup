@@ -232,6 +232,8 @@ class VariableGroup extends IPSModule {
 			return;
 		}
 		
+		$this->SetResultText();
+		
 		foreach ($sourceVariables as $currentVariable) {
 			
 			if (! GetValue($currentVariable['VariableId']) ) {
@@ -255,6 +257,8 @@ class VariableGroup extends IPSModule {
 			$this->SetResult(false);
 			return;
 		}
+		
+		$this->SetResultText();
 		
 		foreach ($sourceVariables as $currentVariable) {
 			
