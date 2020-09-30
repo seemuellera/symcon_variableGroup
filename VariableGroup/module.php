@@ -27,6 +27,7 @@ class VariableGroup extends IPSModule {
 		
 		// Variables
 		$this->RegisterVariableBoolean("Status","Status","~Switch");
+		$this->RegisterVariableString("ResultText","Result Text","~HTMLBox");
 		
 		//Actions
 		$this->EnableAction("Status");
@@ -180,6 +181,44 @@ class VariableGroup extends IPSModule {
 			
 			SetValue($this->GetIDForIdent("Result"), $result);
 		}
+	}
+	
+	protected function SetResultText() {
+		
+		$sourceVariables = $this->GetSourceVariables();
+		
+		if (! $sourceVariables) {
+			
+			$this->LogMessage("Unable to set HTML output as no source variables are defined","ERROR");
+			$this->SetResult(false);
+			return;
+		}
+		
+		$html = "<table>" .
+					"<thead>" .
+						"<th>Variable</th>" .
+						"<th>Status</th>" .
+					"</thead>" .
+					"<tbody>";
+		
+		foreach ($sourceVariables as $currentVariable) {
+
+			$html .= "<tr>" .
+						"<td>" . $currentVariable['Name'] . "</td>";
+						
+			if (GetValue($currentVariable['VariableId']) ) {
+				
+				$html .= '<td bgcolor="red">Alert</td>';
+			}
+			else {
+				
+				$html .= '<td bgcolor="green">OK</td>';
+			}
+					
+			$html .= "</tr>";
+		}
+					
+		$html .= "</tbody></table>";
 	}
 	
 	protected function CheckAnd() {
