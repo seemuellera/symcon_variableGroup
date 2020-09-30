@@ -1,0 +1,14 @@
+{
+  "id": "{31212294-3A51-49E8-8795-0371E1C226D1}",
+  "name": "VariableGroup",
+  "type": 3,
+  "vendor": "Andreas",
+  "aliases": 
+  [
+	  "VariableGroup"
+  ],
+  "parentRequirements": [],
+  "childRequirements": [],
+  "implemented": [],
+  "prefix": "VARGROUP"
+}
