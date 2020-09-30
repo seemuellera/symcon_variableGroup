@@ -47,7 +47,15 @@ class VariableGroup extends IPSModule {
 		$newInterval = $this->ReadPropertyInteger("RefreshInterval") * 1000;
 		$this->SetTimerInterval("RefreshInformation", $newInterval);
 		
-		$this->RegisterMessage($this->ReadPropertyInteger("SourceVariable"), VM_UPDATE);
+		$sourceVariables = $this->GetSourceVariables();
+		
+		if ($sourceVariables) {
+			
+			foreach ($sourceVariables as $currentVariable) {
+				
+				$this->RegisterMessage($currentVariable['VariableId'], VM_UPDATE);
+			}
+		}
 		
 		switch ($this->ReadPropertyString("AggregationMode") ) {
 			
