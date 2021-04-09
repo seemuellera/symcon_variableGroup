@@ -176,7 +176,7 @@ class VariableGroup extends IPSModule {
 				$this->CheckOr();
 				break;
 			default:
-				$this->LogMessage("Aggregation Mode is not defined","ERROR");
+				$this->LogMessage("Aggregation Mode is not defined","CRIT");
 				break;
 		}
 	}
@@ -195,7 +195,7 @@ class VariableGroup extends IPSModule {
 		
 		if (! $sourceVariables) {
 			
-			$this->LogMessage("Unable to set HTML output as no source variables are defined","ERROR");
+			$this->LogMessage("Unable to set HTML output as no source variables are defined","CRIT");
 			$this->SetResult(false);
 			return;
 		}
@@ -235,7 +235,7 @@ class VariableGroup extends IPSModule {
 		
 		if (! $sourceVariables) {
 			
-			$this->LogMessage("Unable to check status as no source variables are defined","ERROR");
+			$this->LogMessage("Unable to check status as no source variables are defined","CRIT");
 			$this->SetResult(false);
 			return;
 		}
@@ -261,7 +261,7 @@ class VariableGroup extends IPSModule {
 		
 		if (! $sourceVariables) {
 			
-			$this->LogMessage("Unable to check status as no source variables are defined","ERROR");
+			$this->LogMessage("Unable to check status as no source variables are defined","CRIT");
 			$this->SetResult(false);
 			return;
 		}
