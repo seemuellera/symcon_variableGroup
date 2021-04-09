@@ -19,7 +19,7 @@ class VariableGroup extends IPSModule {
 		parent::Create();
 
 		// Properties
-		$this->RegisterPropertyString("Sender","DeviceSwitcher");
+		$this->RegisterPropertyString("Sender","VariableGroup");
 		$this->RegisterPropertyInteger("RefreshInterval",0);
 		$this->RegisterPropertyBoolean("DebugOutput",false);
 		$this->RegisterPropertyString("AggregationMode","OR");
