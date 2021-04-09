@@ -155,7 +155,7 @@ class VariableGroup extends IPSModule {
 		}
 		
 		$messageComplete = $severity . " - " . $message;
-		parent::LogMessage($this->ReadPropertyString('Sender') . " - " . $this->InstanceID, $logMappings[$severity]);
+		parent::LogMessage($messageComplete, $logMappings[$severity]);
 	}
 
 	public function RefreshInformation() {
