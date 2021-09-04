@@ -128,6 +128,13 @@ class VariableGroup extends IPSModule {
 								"width" => "250px",
 								"edit" => Array("type" => "ValidationTextBox"),
 								"add" => "Display Name"
+							),
+							Array(
+								"caption" => "Invert Value",
+								"name" => "InvertValue",
+								"width" => "50px",
+								"edit" => Array("type" => "CheckBox"),
+								"add" => false
 							)
 						)
 					);
@@ -246,10 +253,21 @@ class VariableGroup extends IPSModule {
 		
 		foreach ($sourceVariables as $currentVariable) {
 			
-			if (! GetValue($currentVariable['VariableId']) ) {
+			if ($currentVariable['InvertValue']) {
 				
-				$this->SetResult(false);
-				return;
+				if (GetValue($currentVariable['VariableId']) ) {
+					
+					$this->SetResult(false);
+					return;
+				}
+			}
+			else {
+				
+				if (! GetValue($currentVariable['VariableId']) ) {
+					
+					$this->SetResult(false);
+					return;
+				}
 			}
 		}
 		
@@ -272,10 +290,21 @@ class VariableGroup extends IPSModule {
 		
 		foreach ($sourceVariables as $currentVariable) {
 			
-			if (GetValue($currentVariable['VariableId']) ) {
+			if($currentVariable['InvertValue']) {
 				
-				$this->SetResult(true);
-				return;
+				if (! GetValue($currentVariable['VariableId']) ) {
+					
+					$this->SetResult(true);
+					return;
+				}
+			}
+			else {
+				
+				if (GetValue($currentVariable['VariableId']) ) {
+					
+					$this->SetResult(true);
+					return;
+				}
 			}
 		}
 		
