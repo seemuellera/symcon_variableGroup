@@ -220,14 +220,27 @@ class VariableGroup extends IPSModule {
 
 			$html .= "<tr>" .
 						"<td>" . $currentVariable['Name'] . "</td>";
-						
-			if (GetValue($currentVariable['VariableId']) ) {
+		
+			if ($currentVariable['InvertValue']) {
 				
-				$html .= '<td bgcolor="red">Alert</td>';
+				if (! GetValue($currentVariable['VariableId']) ) {
+					
+					$html .= '<td bgcolor="red">Alert</td>';
+				}
+				else {
+					
+					$html .= '<td bgcolor="green">OK</td>';
+				}
 			}
 			else {
-				
-				$html .= '<td bgcolor="green">OK</td>';
+				if (GetValue($currentVariable['VariableId']) ) {
+					
+					$html .= '<td bgcolor="red">Alert</td>';
+				}
+				else {
+					
+					$html .= '<td bgcolor="green">OK</td>';
+				}
 			}
 					
 			$html .= "</tr>";
