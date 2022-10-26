@@ -23,6 +23,7 @@ class VariableGroup extends IPSModule {
 		$this->RegisterPropertyInteger("RefreshInterval",0);
 		$this->RegisterPropertyBoolean("DebugOutput",false);
 		$this->RegisterPropertyString("AggregationMode","OR");
+		$this->RegisterPropertyString("VariableType","Alarm");
 		$this->RegisterPropertyString("SourceVariables","");
 		
 		// Variables
@@ -107,6 +108,21 @@ class VariableGroup extends IPSModule {
 							)
 						)
 					);
+		$form['elements'][] = Array(
+			"type" => "Select", 
+			"name" => "VariableType", 
+			"caption" => "Select Variable Type",
+			"options" => Array(
+				Array(
+					"caption" => "Alarm: Treat individual variables as Alarms. False is OK, True is Alarm",
+					"value" => "Alarm"
+				),
+				Array(
+					"caption" => "Switch: Treat individual variables as switches. False is Off, True is On",
+					"value" => "Switch"
+				)
+			)
+		);
 		$form['elements'][] = Array(
 						"type" => "List", 
 						"name" => "SourceVariables", 
@@ -225,21 +241,49 @@ class VariableGroup extends IPSModule {
 				
 				if (! GetValue($currentVariable['VariableId']) ) {
 					
-					$html .= '<td bgcolor="red">Alert</td>';
+					if ($this->ReadPropertyString("VariableType") == "Alarm") {
+					
+						$html .= '<td bgcolor="red">Alert</td>';
+					}
+					if ($this->ReadPropertyString("VariableType") == "Switch") {
+					
+						$html .= '<td bgcolor="green">On</td>';
+					}
 				}
 				else {
 					
-					$html .= '<td bgcolor="green">OK</td>';
+					if ($this->ReadPropertyString("VariableType") == "Alarm") {
+
+						$html .= '<td bgcolor="green">OK</td>';
+					}
+					if ($this->ReadPropertyString("VariableType") == "Switch") {
+
+						$html .= '<td bgcolor="red">Off</td>';
+					}
 				}
 			}
 			else {
 				if (GetValue($currentVariable['VariableId']) ) {
 					
-					$html .= '<td bgcolor="red">Alert</td>';
+					if ($this->ReadPropertyString("VariableType") == "Alarm") {
+					
+						$html .= '<td bgcolor="red">Alert</td>';
+					}
+					if ($this->ReadPropertyString("VariableType") == "Switch") {
+
+						$html .= '<td bgcolor="green">On</td>';
+					}
 				}
 				else {
 					
-					$html .= '<td bgcolor="green">OK</td>';
+					if ($this->ReadPropertyString("VariableType") == "Alarm") {
+
+						$html .= '<td bgcolor="green">OK</td>';
+					}
+					if ($this->ReadPropertyString("VariableType") == "Switch") {
+
+						$html .= '<td bgcolor="red">Off</td>';
+					}
 				}
 			}
 					
